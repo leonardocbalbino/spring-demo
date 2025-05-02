@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.junit.jupiter.api.Tag;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,44 +27,43 @@ class ExampleController {
 	public String getExample() {
 		return "Este é um endpoint de exemplo!";
 	}
+}
 
-	@RestController
-	@RequestMapping("/api")
-	class UserController {
+@RestController
+@RequestMapping("/api")
+class UserController {
 
-		@GetMapping("/users")
-		public List<User> getUsers() {
-			return Arrays.asList(
-					new User(1, "João", "joao@example.com"),
-					new User(2, "Maria", "maria@example.com"),
-					new User(3, "Carlos", "carlos@example.com")
-			);
-		}
+	@GetMapping("/users")
+	public List<User> getUsers() {
+		return Arrays.asList(
+			new User(1, "João", "joao@example.com"),
+			new User(2, "Maria", "maria@example.com"),
+			new User(3, "Carlos", "carlos@example.com")
+		);
+	}
+}
+
+class User {
+	private int id;
+	private String name;
+	private String email;
+
+	public User(int id, String name, String email) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
 	}
 
-	class User {
-		private int id;
-		private String name;
-		private String email;
-
-		public User(int id, String name, String email) {
-			this.id = id;
-			this.name = name;
-			this.email = email;
-		}
-
-		// Getters
-		public int getId() {
-			return id;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public String getEmail() {
-			return email;
-		}
+	// Getters
+	public int getId() {
+		return id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
 }
